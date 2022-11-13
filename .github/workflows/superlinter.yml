@@ -1,17 +1,13 @@
-name: Super-Linter
+name: Setup Mint
 
 on: push
 
 jobs:
-  super-lint:
-    name: Lint code base
-    runs-on: linux-mint
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@main
+      - uses: fabasoad/setup-mint-action@main
+      - name: Run script
+        run: mint init test-project
